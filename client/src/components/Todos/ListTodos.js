@@ -5,16 +5,18 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 import UpdateTodo from "./UpdateTodo";
 import RemoveTodo from "./RemoveTodo";
 
 import { GET_TODOS } from "../../graphql/queries";
 
-const todos = () => (
+const listTodos = () => (
   <Query query={GET_TODOS}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <CircularProgress/>;
       if (error) return <p>Error :(</p>;
 
       return (
@@ -36,4 +38,4 @@ const todos = () => (
   </Query>
 );
 
-export default todos;
+export default listTodos;
