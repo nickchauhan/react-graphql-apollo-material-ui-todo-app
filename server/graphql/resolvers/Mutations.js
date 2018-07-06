@@ -33,9 +33,20 @@ const createUser = async (_, { name, email, password }) => {
   };
 };
 
+const loginUser = async (_, { email, password }) => {
+  var LoginUser = await User.findByCrendentials(email, password);
+  var token = await LoginUser.generateAuthToken();
+  return {
+    id: LoginUser._id,
+    email: LoginUser.email,
+    authToken: token
+  };
+};
+
 module.exports = {
   createTodo,
   updateTodo,
   removeTodo,
-  createUser
+  createUser,
+  loginUser
 };

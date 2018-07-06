@@ -2,7 +2,8 @@ const { isLoggedIn } = require("../middleware/authenticate");
 
 const permissions = {
   Query: {
-    todos: isLoggedIn
+    todos: isLoggedIn,
+    getUser: isLoggedIn
   },
   Mutation: {
     createTodo: isLoggedIn,

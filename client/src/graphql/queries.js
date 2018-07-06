@@ -10,4 +10,13 @@ const GET_TODOS = gql`
   }
 `;
 
-export { GET_TODOS };
+const GET_USER = gql`
+  query {
+    getUser {
+      name
+      email
+    }
+  }
+`;
+
+export { GET_TODOS, GET_USER };

@@ -1,21 +1,23 @@
-const { todos, loginUser } = require("./resolvers/Queries");
+const { todos, getUser } = require("./resolvers/Queries");
 const {
   createTodo,
   removeTodo,
   updateTodo,
-  createUser
+  createUser,
+  loginUser
 } = require("./resolvers/Mutations");
 
 const resolvers = {
   Query: {
     todos,
-    loginUser
+    getUser
   },
   Mutation: {
     createTodo,
     updateTodo,
     removeTodo,
-    createUser
+    createUser,
+    loginUser
   }
 };
 

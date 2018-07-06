@@ -6,7 +6,9 @@ export default class BoxLayout extends Component {
     return (
       <div style={{ display: "flex" }}>
         <div style={{ margin: "auto", width: "400px" }}>
-          <Paper style={{ marginTop: "20px" }}>{this.props.children}</Paper>
+          <Paper style={{ marginTop: "20px", padding: "20px" }}>
+            {this.props.children}
+          </Paper>
         </div>
       </div>
     );

@@ -8,26 +8,34 @@ import registerServiceWorker from "./registerServiceWorker";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
+//Local State
+import { defaults } from "./graphql/local-state/defaults";
+import { resolvers } from "./graphql/local-state/resolvers";
+
 const client = new ApolloClient({
   uri: "http://localhost:4000",
+
+  // For Sending the Auth Token on Every Request
   request: async operation => {
-    // const token = await localStorage.getItem("authToken");
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjMyMDhiMDI3NjMzZmI5NzZkMTZjNzUiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMwMDA1NjgwfQ.IV-rJ2kSQgHxBzvpHPTnfiLaMYIoaDh1PxS0vrVahuo";
+    const token = await localStorage.getItem("authToken");
     operation.setContext({
       headers: {
         "x-auth": token
       }
     });
+  },
+  clientState: {
+    defaults,
+    resolvers
   }
 });
 
 ReactDOM.render(
-  <BrowserRouter>
-    <ApolloProvider client={client}>
+  <ApolloProvider client={client}>
+    <BrowserRouter>
       <App />
-    </ApolloProvider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 registerServiceWorker();

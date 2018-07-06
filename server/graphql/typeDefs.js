@@ -1,7 +1,7 @@
 const typeDefs = `
   type Query {
     todos: [Todo]
-    loginUser(email:String,password:String):AuthPayLoad
+    getUser: User
   }
 
   type Todo {
@@ -10,6 +10,12 @@ const typeDefs = `
     completed: Boolean,
     completedAt: String,
     _creator:ID
+  }
+
+  type User {
+    id: ID,
+    name: String,
+    email: String
   }
 
   type AuthPayLoad {
@@ -23,6 +29,7 @@ const typeDefs = `
     updateTodo( id: ID!, complete:Boolean!): Boolean!
     removeTodo( id: ID!): ID
     createUser( name: String!, email: String!, password : String!): AuthPayLoad
+    loginUser(email:String,password:String):AuthPayLoad
   }
 `;
 
